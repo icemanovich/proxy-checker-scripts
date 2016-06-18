@@ -23,18 +23,17 @@ FILENAME=''
 ## We're trying to reach this url via the given HTTP Proxy Server
 ## (http://www.google.com by default)
 URL="http://echoip.com"
+TIMEOUT=10          ## default request timeout (in seconds)
 # ###############################################
 
 function check()
 {
     local ADDRESS=$1
-    # Timeout time (in seconds)
-    timeout=10
 
     echo -n "$ADDRESS :: "
 
     # We're fetching the return code and assigning it to the $result variable
-    result=`curl -s -o /dev/null -w "%{http_code}" --connect-timeout $timeout -x $ADDRESS $URL`
+    result=`curl -s -o /dev/null -w "%{http_code}" --connect-timeout $TIMEOUT -x $ADDRESS $URL`
 
     echo -n "CODE $result :: Status "
 
@@ -80,6 +79,10 @@ do
     -f|--file)
         TYPE='list'
         FILENAME=$2
+        shift 2
+        ;;
+    -t|--timeout)
+        TIMEOUT=$2
         shift 2
         ;;
 
