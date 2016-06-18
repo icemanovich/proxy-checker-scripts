@@ -96,6 +96,7 @@ do
         echo "-u, --url=ADDRESS         specify a target url address"
         echo "-p, --proxy=HOST:PORT     specify a proxy address:port to test"
         echo "-f, --file                specify a file with proxy to check"
+        echo "-t, --timeout             set timeout for each request (in seconds)"
         exit 0
         ;;
     *)
